@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+brew install helix
+
+cp -r $HOME/.dev-env/.config/helix $HOME/.config

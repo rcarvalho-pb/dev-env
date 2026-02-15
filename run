@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+
+OS="$(uname)"
+
+if ! command -v brew >/dev/null 2>&1; then
+    echo "Homebrew não encontrado. Instalando..."
+    NONINTERACTIVE=1 /bin/bash -c \
+    "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+BREW_BIN="$(command -v brew || true)"
+
+if [ -z "$BREW_BIN" ]; then
+    for path in \
+        /opt/homebrew/bin/brew \
+        /usr/local/bin/brew \
+        /home/linuxbrew/.linuxbrew/bin/brew
+    do
+        if [ -x "$path" ]; then
+            BREW_BIN="$path"
+            break
+        fi
+    done
+fi
+
+if [ -n "$BREW_BIN" ]; then
+    SHELL_ENV_LINE="eval \"\$($BREW_BIN shellenv)\""
+
+    if [ "$OS" = "Darwin" ]; then
+        PROFILE="$HOME/.zprofile"
+    else
+        PROFILE="$HOME/.profile"
+    fi
+
+    if ! grep -qF "$SHELL_ENV_LINE" "$PROFILE" 2>/dev/null; then
+        echo "Adicionando brew ao $PROFILE"
+        echo "$SHELL_ENV_LINE" >> "$PROFILE"
+    fi
+fi
+
+script_dir=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+filter=""
+dry="0"
+
+while [[ $# > 0 ]]; do
+  if [[ $1 == "--dry" ]]; then
+    dry="1"
+  else
+    filter="$1"
+  fi
+  shift
+done
+
+log() {
+  if [[ $dry == "1" ]]; then
+    echo "[DRY_RUN]: $@"
+  else
+    echo "$@"
+  fi
+}
+
+execute() {
+  log "execute $@"
+  if [[ $dry == "1" ]]; then
+    return
+  fi
+  "$@"
+}
+
+log "$script_dir -- $filter"
+
+cd $script_dir
+
+
+if [ "$OS" = "Darwin" ]; then
+    FIND_EXEC="-perm +111"
+else
+    FIND_EXEC="-executable"
+fi
+
+scripts=$(find ./runs -maxdepth 1 -mindepth 1 $FIND_EXEC -type f)
+
+for script in $scripts; do
+  if echo "$script" | grep -qv "$filter"; then
+    log "filtering $script"
+    continue
+  fi
+
+  execute ./$script
+done

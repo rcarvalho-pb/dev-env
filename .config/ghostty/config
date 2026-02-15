@@ -1,0 +1,8 @@
+# Fonte
+font-family = "IosevkaTerm NFM"
+font-size = 18
+
+# Aparência
+background-opacity = 0.95
+window-padding-x = 8
+window-padding-y = 8
