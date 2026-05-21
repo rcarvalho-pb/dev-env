@@ -1,4 +1,4 @@
-return {
-  "stevearc/dressing.nvim",
-  event = "VeryLazy",
-}
+require("dressing").setup({
+	input = { enabled = true },
+	select = { enabled = true },
+})
