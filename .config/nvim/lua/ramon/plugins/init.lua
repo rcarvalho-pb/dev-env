@@ -12,6 +12,7 @@ vim.pack.add({
 	"https://github.com/folke/ts-comments.nvim",
 	"https://github.com/folke/todo-comments.nvim",
 	"https://github.com/folke/flash.nvim",
+	"https://github.com/tpope/vim-fugitive",
 	{
 		src = "https://github.com/nvim-treesitter/nvim-treesitter",
 		branch = "main",

@@ -1,5 +1,7 @@
 vim.g.mapleader = " " -- space for leader
 vim.g.maplocalleader = " " -- space for localleader
+
+vim.keymap.set("n", "<leader>re", "<cmd>restart<cr>", { desc = "Restart config :restart)" })
 --
 -- better movement in wrapped text
 vim.keymap.set("n", "j", function()
@@ -8,6 +10,18 @@ end, { expr = true, silent = true, desc = "Down (wrap-aware)" })
 vim.keymap.set("n", "k", function()
 	return vim.v.count == 0 and "gk" or "k"
 end, { expr = true, silent = true, desc = "Up (wrap-aware)" })
+
+vim.keymap.set("n", "<leader>X", "<cmd>!chmod +x %<CR>", { silent = true, desc = "makes file executable" })
+
+vim.keymap.set(
+	"n",
+	"<leader>rg",
+	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+	{ desc = "Replace word cursor is on globally" }
+)
+
+vim.keymap.set("v", "<", "<gv", { desc = "Unindent and keep selection" })
+vim.keymap.set("v", ">", ">gv", { desc = "Indent and keep selection" })
 
 vim.keymap.set("i", "jj", "<ESC>", { desc = "Stop inserting" })
 vim.keymap.set("i", "jk", "<ESC>", { desc = "Stop inserting" })
@@ -45,6 +59,11 @@ vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
+
+vim.keymap.set("n", "<leader>u", function()
+	vim.cmd.packadd("nvim.undotree")
+	require("undotree").open()
+end, { desc = "Toggle Builtin Undotree" })
 
 vim.keymap.set("n", "<leader>pa", function() -- show file path
 	local path = vim.fn.expand("%:p")
