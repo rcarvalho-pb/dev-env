@@ -33,6 +33,7 @@ vim.pack.add({
 	"https://github.com/L3MON4D3/LuaSnip",
 })
 
+require("ramon.plugins.fzf")
 require("ramon.plugins.gitsigns")
 require("ramon.plugins.mini")
 require("ramon.plugins.oil")
