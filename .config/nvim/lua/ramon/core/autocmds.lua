@@ -90,6 +90,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = augroup,
 	pattern = { "markdown", "text", "gitcommit" },
 	callback = function()
+        pcall(vim.treesitter.start)
 		vim.opt_local.wrap = true
 		vim.opt_local.linebreak = true
 		vim.opt_local.spell = true

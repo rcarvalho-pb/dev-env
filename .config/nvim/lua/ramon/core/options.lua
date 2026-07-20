@@ -106,8 +106,8 @@ vim.opt.foldlevel = 99 -- start with all folds open
 vim.opt.splitbelow = true -- horizontal splits go below
 vim.opt.splitright = true -- vertical splits go right
 
-vim.opt.wildmenu = true -- tab completion
-vim.opt.wildmode = "longest:full,full" -- complete longest common match, full completion list, cycle through with Tab
-vim.opt.diffopt:append("linematch:60") -- improve diff display
-vim.opt.redrawtime = 10000 -- increase neovim redraw tolerance
-vim.opt.maxmempattern = 20000 -- increase max memory
+-- vim.opt.wildmenu = true -- tab completion
+-- vim.opt.wildmode = "longest:full,full" -- complete longest common match, full completion list, cycle through with Tab
+-- vim.opt.diffopt:append("linematch:60") -- improve diff display
+-- vim.opt.redrawtime = 10000 -- increase neovim redraw tolerance
+-- vim.opt.maxmempattern = 20000 -- increase max memory
