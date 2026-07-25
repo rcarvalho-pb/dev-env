@@ -1,3 +1,5 @@
+vim.pack.add({"https://www.github.com/echasnovski/mini.nvim"})
+
 require("mini.ai").setup({})
 require("mini.comment").setup({})
 require("mini.move").setup({})
@@ -25,6 +27,6 @@ require("mini.notify").setup({
 	},
 })
 require("mini.icons").setup({})
-require("mini.cmdline").setup({
-	autocorrect = { enable = false },
-})
+-- require("mini.cmdline").setup({
+-- 	autocorrect = { enable = false },
+-- })

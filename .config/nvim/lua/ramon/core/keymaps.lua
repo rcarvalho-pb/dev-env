@@ -1,6 +1,7 @@
 vim.g.mapleader = " " -- space for leader
 vim.g.maplocalleader = " " -- space for localleader
 
+vim.keymap.set("n", "<C-a>", "ggVG", { desc = "Select all" })
 vim.keymap.set("n", "<leader>re", "<cmd>restart<cr>", { desc = "Restart config :restart)" })
 --
 -- better movement in wrapped text

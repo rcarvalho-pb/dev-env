@@ -1,7 +1,7 @@
 -- 1. Baixa o fzf-lua e a biblioteca de ícones via vim.pack
 vim.pack.add({
-  "nvim-tree/nvim-web-devicons",
-  "ibhagwan/fzf-lua",
+  "https://github.com/nvim-tree/nvim-web-devicons",
+  "https://github.com/ibhagwan/fzf-lua",
 })
 
 local fzf = require("fzf-lua")
